@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="/home/moglix/automationtest/OMS_UAE">
+        <classes>
+            <class name="Test.Main_Test">
+                <methods>
+                <include name="Verifyloginprocess"/>
+                <include name="Business_module"/>
+                </methods>
+        </class>
+        </classes>
+    </test>
+</suite>
