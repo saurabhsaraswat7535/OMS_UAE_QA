@@ -28,6 +28,9 @@ public class Main_Test extends Base_Test {
         business_module.Download_button();
         business_module.verifyItemIdInputBox("3343284");
         business_module.filter_Result(invoice_No);
-
+        business_module.verify_Invoice_View();
+        business_module.verify_history_view();
+        business_module.verify_request_button();
+        business_module.Verify_approve_Button();
     }
 }

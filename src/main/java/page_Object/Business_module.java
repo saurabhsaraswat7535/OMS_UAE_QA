@@ -2,6 +2,7 @@ package page_Object;
 
 import Abstract_Component.Abstract_component;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +18,7 @@ public class Business_module extends Abstract_component {
         PageFactory.initElements(driver, this);
     }
     public WebElement findElement(By locator) {
+
         return driver.findElement(locator);
     }
     @FindBy (xpath = "//input[@name='invoiceNum']")
@@ -37,8 +39,24 @@ public class Business_module extends Abstract_component {
      WebElement from_date;
 
     //Checkbox
-    @FindBy(xpath = "//span[contains(@class, 'mat-checkbox-inner-container')]/input")
+    @FindBy(xpath = "//span[contains(@class, 'mat-checkbox-inner-container')]/input[@type='checkbox']")
     WebElement Checkbox;
+
+    //invoice_view button
+    @FindBy(xpath = "//span[contains(@class, 'redColor') and .//a[contains(@href, 'supplierDamageInvoice')]]")
+    WebElement invoice_view_btn;
+
+    //history view button
+    @FindBy(xpath = "//i[contains(@class, 'ri-time-line')]")
+    WebElement history_view_btn;
+
+    //request id button
+    @FindBy(xpath = "//td[@class='mat-cell cdk-cell cdk-column-name mat-column-name ng-star-inserted']/button[@class='redColor']")
+    WebElement request_btn;
+
+    //Approve button
+    @FindBy(xpath = "//button[contains(text(), 'Approve Request')]")
+    WebElement Approve_btn;
 
 
 
@@ -110,6 +128,31 @@ public class Business_module extends Abstract_component {
     public void Download_button(){
         Download_btn.click();
 
+    }
+    public void verify_Invoice_View(){
+        Assert.assertTrue(invoice_view_btn.isDisplayed(), "button not visible");
+        Assert.assertTrue(invoice_view_btn.isEnabled(), "Checkbox is not enabled.");
+    }
+    public void verify_history_view(){
+        Assert.assertTrue(history_view_btn.isDisplayed(), "button not visible");
+        Assert.assertTrue(history_view_btn.isEnabled(), "Checkbox is not enabled.");
+    }
+    public void verify_request_button(){
+        Assert.assertTrue(request_btn.isDisplayed(), "button not visible");
+        Assert.assertTrue(request_btn.isEnabled(), "Checkbox is not enabled.");
+    }
+    public void Verify_approve_Button() throws InterruptedException {
+        // Check the state of the checkbox
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", Checkbox);
+        Thread.sleep(2000);
+        if (Checkbox.isSelected()) {
+            System.out.println("Checkbox is selected. Button is enabled.");
+            Assert.assertTrue(Approve_btn.isEnabled(), "Button should be enabled.");
+        } else {
+            System.out.println("Checkbox is not selected. Button is disabled.");
+            Assert.assertFalse(Approve_btn.isEnabled(), "Button should be disabled.");
+        }
     }
 
     }
