@@ -9,6 +9,7 @@ import page_Object.Login_Page;
 import page_Object.Profile_module;
 
 public class Main_Test extends Base_Test {
+    String invoice_No="nfh6637";
 
     @Test
     public void Verifyloginprocess() throws InterruptedException {
@@ -26,6 +27,7 @@ public class Main_Test extends Base_Test {
         business_module.verifySearchButton();
         business_module.Download_button();
         business_module.verifyItemIdInputBox("3343284");
+        business_module.filter_Result(invoice_No);
 
     }
 }

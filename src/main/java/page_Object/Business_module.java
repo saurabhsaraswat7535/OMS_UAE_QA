@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import java.time.Duration;
 public class Business_module extends Abstract_component {
     WebDriver driver;
@@ -100,9 +102,11 @@ public class Business_module extends Abstract_component {
         org.testng.Assert.assertFalse(checkbox.isSelected(), "Checkbox is still selected.");
     }
 
-    public void filter_Result(){
-        WebElement invoice_no=driver.findElement(By.xpath("//td[contains(@class, 'mat-cell') and contains(@class, 'cdk-cell') and contains(@class, 'cdk-column-qty') and contains(@class, 'ng-star-inserted')]"));
+    public void filter_Result(String searchfilter){
+        WebElement filtered_data=driver.findElement(By.xpath("//td[contains(@class, 'mat-cell') and contains(@class, 'cdk-cell') and contains(@class, 'cdk-column-qty')]"));
+        Assert.assertEquals(filtered_data.getText(),searchfilter, "Filtered data does not match expected criteria");
     }
+
     public void Download_button(){
         Download_btn.click();
 
