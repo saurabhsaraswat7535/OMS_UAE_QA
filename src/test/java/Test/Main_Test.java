@@ -10,7 +10,8 @@ import page_Object.Profile_module;
 
 public class Main_Test extends Base_Test {
     String invoice_No="nfh6637";
-
+    String suppliername="Mogli Labs (india) Private Limited";
+    String remark="abc";
     @Test
     public void Verifyloginprocess() throws InterruptedException {
         Login_Page login_page = new Login_Page(driver);
@@ -23,7 +24,7 @@ public class Main_Test extends Base_Test {
     public void Business_module() throws InterruptedException {
         Business_module business_module=new Business_module(driver);
         business_module.verifyInputBox("nfh6637");
-        business_module.verifySupplierDropdown(("Mogli Labs (india) Private Limited"));
+        business_module.verifySupplierDropdown((suppliername));
         business_module.verifySearchButton();
         business_module.Download_button();
         business_module.verifyItemIdInputBox("3343284");
@@ -32,5 +33,6 @@ public class Main_Test extends Base_Test {
         business_module.verify_history_view();
         business_module.verify_request_button();
         business_module.Verify_approve_Button();
+        business_module.Create_request(suppliername,"test123",remark);
     }
 }

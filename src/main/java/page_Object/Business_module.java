@@ -58,7 +58,33 @@ public class Business_module extends Abstract_component {
     @FindBy(xpath = "//button[contains(text(), 'Approve Request')]")
     WebElement Approve_btn;
 
+    //add request button
+    @FindBy(xpath = "//a[contains(text(), 'Add Request')]")
+    WebElement create_Request_Btn;
 
+    //add request supplier x path
+    @FindBy(xpath = "//input[@formcontrolname='supplierName']")
+    WebElement search_Supplier;
+
+    //invoice no add request
+    @FindBy(xpath = "//input[@formcontrolname='invoiceNum']")
+    WebElement Invoice_no;
+
+    //add request calender
+    @FindBy(xpath = "(//button[contains(@aria-label, 'Open calendar')])[3]")
+    WebElement Calender;
+
+    //add request current date
+    @FindBy(xpath = "//div[@class='mat-calendar-body-cell-content mat-focus-indicator mat-calendar-body-today']")
+    WebElement current_Date;
+
+    //add request remark
+    @FindBy(xpath = "//textarea[@id='textarea' and @formcontrolname='Remarks']")
+    WebElement remark;
+
+    //upload invoice
+    @FindBy(xpath = "//div[@class='dashed-box']")
+    WebElement Upload_Invoice;
 
     public void verifyInputBox(String text) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -71,11 +97,11 @@ public class Business_module extends Abstract_component {
         org.testng.Assert.assertTrue(Input_Box.getAttribute("value").isEmpty(), "Input box is not empty after clearing");
     }
 
-    public void verifySupplierDropdown(String optionText) {
-        searchableDropdownInput.sendKeys(optionText);
+    public void verifySupplierDropdown(String Supplier_name) {
+        searchableDropdownInput.sendKeys(Supplier_name);
         searchableDropdownInput.sendKeys(Keys.ENTER);
         String selectedOption = searchableDropdownInput.getAttribute("value");
-        org.testng.Assert.assertEquals(selectedOption, optionText, "Dropdown selection is not as expected");
+        org.testng.Assert.assertEquals(selectedOption, Supplier_name, "Dropdown selection is not as expected");
     }
 
     public void verifyItemIdInputBox(String Item_id){
@@ -153,6 +179,25 @@ public class Business_module extends Abstract_component {
             System.out.println("Checkbox is not selected. Button is disabled.");
             Assert.assertFalse(Approve_btn.isEnabled(), "Button should be disabled.");
         }
+    }
+    public void Create_request(String Supplier_name,String Invoice_No,String Remark){
+        create_Request_Btn.click();
+        search_Supplier.sendKeys(Supplier_name);
+        search_Supplier.sendKeys(Keys.ENTER);
+        String selectedOption = search_Supplier.getAttribute("value");
+        org.testng.Assert.assertEquals(selectedOption, Supplier_name, "Dropdown selection is not as expected");
+        // invoice no
+        org.testng.Assert.assertTrue(Invoice_no.isDisplayed(), "Input box is not displayed");
+        org.testng.Assert.assertTrue(Invoice_no.isEnabled(), "Input box is not enabled");
+        Invoice_no.sendKeys(Invoice_No);
+        org.testng.Assert.assertEquals(Invoice_no.getAttribute("value"), Invoice_No, "Input text is not as expected");
+        Invoice_no.clear();
+        org.testng.Assert.assertTrue(Invoice_no.getAttribute("value").isEmpty(), "Input box is not empty after clearing");
+        Calender.click();
+        current_Date.click();
+        remark.sendKeys(Remark);
+
+
     }
 
     }

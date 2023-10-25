@@ -41,6 +41,10 @@ public class Login_Page extends Abstract_component {
            WebElement SubmitButton;
    @FindBy (className = "form-control")
            WebElement Country;
+   //country submit button
+
+    @FindBy(xpath = "//*[contains(text(),'Submit')]")
+           WebElement country_submit_btn;
 
 
     By Email= By.cssSelector("//input[@type='email']");
@@ -48,7 +52,7 @@ public class Login_Page extends Abstract_component {
 
 
     public void microsoftlogin(String email,String password) throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
             micro_button.click();
         Set<String> windows = driver.getWindowHandles(); // parent and child id.
         java.util.Iterator<String> it = windows.iterator();
@@ -58,7 +62,7 @@ public class Login_Page extends Abstract_component {
         WebElement Email = wait.until(ExpectedConditions.elementToBeClickable(userEmail));
         Email.sendKeys(email);
         Submit_btn.click();
-        Thread.sleep(2000);
+        WebElement pass = wait.until(ExpectedConditions.elementToBeClickable(Password));
         Password.sendKeys(password);
         submit_button.click();
         // Wait for the checkbox to be clickable
@@ -72,8 +76,8 @@ public class Login_Page extends Abstract_component {
         Select dropdown=new Select(countryname);
         dropdown.selectByIndex(0);
         countryname.click();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[contains(text(),'Submit')]")).click();
+        WebElement country_button = wait.until(ExpectedConditions.elementToBeClickable(country_submit_btn));
+        country_button.click();
         }
 
     public void Websiteurl() {
