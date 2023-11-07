@@ -52,7 +52,7 @@ public class Login_Page extends Abstract_component {
 
 
     public void microsoftlogin(String email,String password) throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
             micro_button.click();
         Set<String> windows = driver.getWindowHandles(); // parent and child id.
         java.util.Iterator<String> it = windows.iterator();

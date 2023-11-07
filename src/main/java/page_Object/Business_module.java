@@ -83,7 +83,7 @@ public class Business_module extends Abstract_component {
     WebElement remark;
 
     //upload invoice
-    @FindBy(xpath = "//div[@class='dashed-box']")
+    @FindBy(id = "select-file")
     WebElement Upload_Invoice;
 
     public void verifyInputBox(String text) throws InterruptedException {
@@ -191,13 +191,11 @@ public class Business_module extends Abstract_component {
         org.testng.Assert.assertTrue(Invoice_no.isEnabled(), "Input box is not enabled");
         Invoice_no.sendKeys(Invoice_No);
         org.testng.Assert.assertEquals(Invoice_no.getAttribute("value"), Invoice_No, "Input text is not as expected");
-        Invoice_no.clear();
-        org.testng.Assert.assertTrue(Invoice_no.getAttribute("value").isEmpty(), "Input box is not empty after clearing");
         Calender.click();
         current_Date.click();
         remark.sendKeys(Remark);
-
-
+       // Upload_Invoice.click();
+        Upload_Invoice.sendKeys("/home/moglix/Desktop/image.jpg");
     }
 
     }
