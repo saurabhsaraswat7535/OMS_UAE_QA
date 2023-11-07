@@ -34,10 +34,10 @@ public class Base_Test {
         login.Websiteurl();
     }
 
- //   @AfterClass
-   // public void tearDown() {
-     //   if (driver != null) {
-       //     driver.quit();
-        //}
-    //}
+    @AfterClass
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }

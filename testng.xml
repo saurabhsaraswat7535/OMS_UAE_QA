@@ -6,7 +6,7 @@
             <class name="Test.Main_Test">
                 <methods>
                 <include name="Verifyloginprocess"/>
-                <include name="Business_module"/>
+                    <include name="customer_module"/>
                 </methods>
         </class>
         </classes>
