@@ -22,7 +22,7 @@ public class Login_Page extends Abstract_component {
         this.driver=driver;
         PageFactory.initElements(driver, this);
     }
-    //page object
+    //page objects
     @FindBy (xpath = "//input[@type='email']")
     WebElement userEmail;
 
