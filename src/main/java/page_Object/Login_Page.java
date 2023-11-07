@@ -74,7 +74,7 @@ public class Login_Page extends Abstract_component {
         WebElement countryname = wait.until(ExpectedConditions.elementToBeClickable(Country));
         countryname.click();
         Select dropdown=new Select(countryname);
-        dropdown.selectByIndex(0);
+        dropdown.selectByIndex(1);
         countryname.click();
         WebElement country_button = wait.until(ExpectedConditions.elementToBeClickable(country_submit_btn));
         country_button.click();

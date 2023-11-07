@@ -1,15 +1,15 @@
 package Test;
 
 import Test_Component.Base_Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import page_Object.Business_module;
+import page_Object.Customer_module;
 import page_Object.Login_Page;
 import page_Object.Profile_module;
 
 public class Main_Test extends Base_Test {
     String invoice_No="nfh6637";
+    String orderid="123212";
     String suppliername="Mogli Labs (india) Private Limited";
     String remark="abc";
     @Test
@@ -18,7 +18,14 @@ public class Main_Test extends Base_Test {
         login_page.microsoftlogin("saurabh.saraswat@moglix.com","Nokia2690@");
         Profile_module profile_module=new Profile_module(driver);
         profile_module.Main_Menu();
-        profile_module.Supplier_Damage_Module();
+        profile_module.Customer_order_module();
+        //profile_module.Supplier_Damage_Module();
+    }
+
+    @Test
+    public void  customer_module() throws InterruptedException {
+        Customer_module customer_order=new Customer_module(driver);
+        customer_order.verifyInputBox(orderid);
     }
     @Test
     public void Business_module() throws InterruptedException {

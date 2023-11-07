@@ -25,6 +25,9 @@ public class Profile_module extends Abstract_component {
     @FindBy (xpath = "//*[contains(text(),'Supplier Damage')]")
     WebElement Supplier_Damage;
 
+    @FindBy (xpath = "//*[contains(text(),' Customer order ')]")
+    WebElement Customer_order;
+
     @FindBy (xpath = "//span[contains(text(),'Business')]")
     WebElement Business_tab;
 
@@ -38,6 +41,15 @@ public class Profile_module extends Abstract_component {
     }
 
     // Then, in your method
+
+    public void Customer_order_module(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement supplier_damage = wait.until(ExpectedConditions.elementToBeClickable(Customer_order));
+        Customer_order.click();
+    }
+
+
+    //this medthod for supplier_damage
     public void Supplier_Damage_Module() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement supplier_damage = wait.until(ExpectedConditions.elementToBeClickable(Supplier_Damage));
