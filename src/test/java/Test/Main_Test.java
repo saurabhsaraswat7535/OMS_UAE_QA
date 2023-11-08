@@ -26,6 +26,9 @@ public class Main_Test extends Base_Test {
     public void  customer_module() throws InterruptedException {
         Customer_module customer_order=new Customer_module(driver);
         customer_order.verifyInputBox(orderid);
+        customer_order.verifyDropdown("orderId");
+        customer_order.verify_Apply_Button();
+        customer_order.verify_Reset_Filter();
     }
     @Test
     public void Business_module() throws InterruptedException {
