@@ -48,12 +48,11 @@ public class Customer_module extends Abstract_component {
         searchbox.clear();
         org.testng.Assert.assertTrue(searchbox.getAttribute("value").isEmpty(), "Input box is not empty after clearing");
     }
-    public void verifyDropdown(String optionToSelect) {
-
-        // Click on the mat-select to open the dropdown
-        dropdown1.click();
+    public void verifyDropdown() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfAllElements(matOptions));
+        wait.until(ExpectedConditions.elementToBeClickable(dropdown1));
+        dropdown1.click();
+
         if (!matOptions.isEmpty()) {
             matOptions.get(0).click(); // Click on the first element
         } else {
@@ -61,15 +60,19 @@ public class Customer_module extends Abstract_component {
             System.out.println("No options found in the dropdown.");
         }
     }
-    public void verify_Apply_Button(){
-        org.testng.Assert.assertTrue(Apply_button.isDisplayed(), "Button is not displayed");
-        org.testng.Assert.assertTrue(Apply_button.isEnabled(), "Button is not enabled");
-        org.testng.Assert.assertEquals(Apply_button.getText(), "Apply", "Button text is not as expected");
+    public void verifyApplyButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(Apply_button));
+        org.testng.Assert.assertTrue(Apply_button.isDisplayed(), "Apply button is not displayed");
+        org.testng.Assert.assertTrue(Apply_button.isEnabled(), "Apply button is not enabled");
+        org.testng.Assert.assertEquals(Apply_button.getText(), "Apply", "Apply button text is not as expected");
     }
-    public void verify_Reset_Filter(){
-        org.testng.Assert.assertTrue(Reset_Button.isDisplayed(), "Button is not displayed");
-        org.testng.Assert.assertTrue(Reset_Button.isEnabled(), "Button is not enabled");
-        org.testng.Assert.assertEquals(Reset_Button.getText(), "Reset Filter", "Button text is not as expected");
+    public void verifyResetButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(Reset_Button));
+        org.testng.Assert.assertTrue(Reset_Button.isDisplayed(), "Reset Filter button is not displayed");
+        org.testng.Assert.assertTrue(Reset_Button.isEnabled(), "Reset Filter button is not enabled");
+        org.testng.Assert.assertEquals(Reset_Button.getText(), "Reset Filter", "Reset Filter button text is not as expected");
     }
 
 
